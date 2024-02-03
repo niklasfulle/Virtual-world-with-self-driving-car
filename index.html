@@ -9,8 +9,12 @@
   <body>
     <h1>Virtual World</h1>
     <canvas id="canvas"></canvas>
-    <div id="controls"></div>
+    <div id="controls">
+      <button onclick="dispose()">🗑️</button>
+      <button onclick="save()">💾</button>
+    </div>
     <script src="js/graphEditor.js"></script>
+    <script src="js/viewport.js"></script>
     <script src="js/math/utils.js"></script>
     <script src="js/math/graph.js"></script>
     <script src="js/primitives/point.js"></script>
@@ -31,13 +35,18 @@
       const s4 = new Segment(p4, p1);
 
       const graph = new Graph([p1, p2, p3, p4], [s1, s2, s3, s4]);
-      const graphEditor = new GraphEditor(canvas, graph);
+      const viewport = new Viewport(canvas);
+      const graphEditor = new GraphEditor(viewport, graph);
 
       animation();
 
       function animation() {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
+        ctx.save();
+        ctx.scale(1 / viewport.zoom, 1 / viewport.zoom);
+        ctx.translate(viewport.offset.x, viewport.offset.y);
         graphEditor.display();
+        ctx.restore();
         requestAnimationFrame(animation);
       }
     </script>

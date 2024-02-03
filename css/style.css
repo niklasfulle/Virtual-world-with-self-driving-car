@@ -1,6 +1,7 @@
 body {
   background-color: black;
   text-align: center;
+  overflow: hidden;
 }
 
 h1 {
