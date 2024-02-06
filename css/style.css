@@ -43,6 +43,7 @@ h1 {
   -moz-border-radius: 5px;
   -ms-border-radius: 5px;
   -o-border-radius: 5px;
+  box-shadow: 1px 1px black;
 }
 
 #controls button:nth-child(2) {
