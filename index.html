@@ -7,11 +7,18 @@
     <link rel="stylesheet" href="css/style.css" />
   </head>
   <body>
-    <h1>Virtual World</h1>
     <canvas id="canvas"></canvas>
     <div id="controls">
       <button onclick="dispose()">🗑️</button>
       <button onclick="save()">💾</button>
+      <button id="graphBtn" onclick="setMode('graph')">🌐</button>
+      <button id="stopBtn" onclick="setMode('stop')">🛑</button>
+      <button id="yieldBtn" onclick="setMode('yield')">⚠️</button>
+      <button id="crossingBtn" onclick="setMode('crossing')">🚶</button>
+      <button id="parkingBtn" onclick="setMode('parking')">🅿️</button>
+      <button id="lightBtn" onclick="setMode('light')">🚦</button>
+      <button id="startBtn" onclick="setMode('start')">🚙</button>
+      <button id="targetBtn" onclick="setMode('target')">🎯</button>
     </div>
     <script src="js/world.js"></script>
     <script src="js/graphEditor.js"></script>
@@ -25,16 +32,24 @@
     <script src="js/primitives/polygon.js"></script>
     <script src="js/primitives/envelope.js"></script>
     <script>
-      canvas.width = window.innerWidth - 100;
-      canvas.height = window.innerHeight - 150;
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
 
       const ctx = canvas.getContext("2d");
 
       const graphString = localStorage.getItem("graph");
+      const zoomString = localStorage.getItem("zoom");
+      const positionString = localStorage.getItem("position");
       const graphInfo = graphString ? JSON.parse(graphString) : null;
+      const zoom = zoomString ? JSON.parse(zoomString) : 1;
+      const position = positionString
+        ? JSON.parse(positionString)
+        : scale(new Point(canvas.width / 2, canvas.height / 2), -1);
       const graph = graphInfo ? Graph.load(graphInfo) : new Graph();
       const world = new World(graph);
       const viewport = new Viewport(canvas);
+      viewport.setZoom(zoom);
+      viewport.setOffset(position);
       const graphEditor = new GraphEditor(viewport, graph);
 
       let oldGraphHash = graph.hash();
@@ -59,6 +74,8 @@
 
       function save() {
         localStorage.setItem("graph", JSON.stringify(graph));
+        localStorage.setItem("zoom", JSON.stringify(viewport.getZoom()));
+        localStorage.setItem("position", JSON.stringify(viewport.getOffset()));
       }
     </script>
   </body>

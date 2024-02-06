@@ -35,8 +35,20 @@ class Viewport {
     return subtractDragOffset ? subtract(p, this.drag.offset) : p;
   }
 
+  setOffset(offset) {
+    this.offset = offset;
+  }
+
   getOffset() {
     return add(this.offset, this.drag.offset);
+  }
+
+  setZoom(zoom) {
+    this.zoom = zoom;
+  }
+
+  getZoom() {
+    return this.zoom;
   }
 
   #addEventListeners() {
