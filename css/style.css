@@ -28,7 +28,8 @@ h1 {
   z-index: 100;
 }
 
-#controls button {
+#controls button,
+#controls .file-input-label {
   pointer-events: auto;
   margin: 12px;
   padding: 2px;
@@ -46,15 +47,20 @@ h1 {
   box-shadow: 1px 1px black;
 }
 
-#controls button:nth-child(2) {
+#controls .file-input-label {
   margin-bottom: 2em;
 }
 
-#controls button:hover {
+#controls button:hover,
+#controls .file-input-label:hover {
   border: 2px solid black;
   transition: all 0.1s ease-in-out;
   -webkit-transition: all 0.1s ease-in-out;
   -moz-transition: all 0.1s ease-in-out;
   -ms-transition: all 0.1s ease-in-out;
   -o-transition: all 0.1s ease-in-out;
+}
+
+input[type="file"] {
+  display: none;
 }
