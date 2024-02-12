@@ -31,10 +31,10 @@ body {
   background-color: #2a5;
 }
 
-#controls button,
-#controls .file-input-label {
+#controls button {
   pointer-events: auto;
-  margin: 12px;
+  margin: 0.3em;
+  margin-bottom: 0.15em;
   padding: 2px;
   font-size: 1.5em;
   color: white;
@@ -48,14 +48,10 @@ body {
   -ms-border-radius: 5px;
   -o-border-radius: 5px;
   box-shadow: 1px 1px black;
+  width: 1.5em;
 }
 
-#controls .file-input-label {
-  margin-bottom: 2em;
-}
-
-#controls button:hover,
-#controls .file-input-label:hover {
+#controls button:hover {
   border: 2px solid black;
   transition: all 0.1s ease-in-out;
   -webkit-transition: all 0.1s ease-in-out;

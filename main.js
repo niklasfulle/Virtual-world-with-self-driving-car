@@ -16,7 +16,7 @@ const world = worldInfo ? World.load(worldInfo) : new World(new Graph());
 
 const viewport = new Viewport(worldCanvas, world.zoom, world.offset);
 
-const N = 1;
+const N = 50;
 const cars = generateCars(N);
 let bestCar = cars[0];
 if (localStorage.getItem("bestBrain")) {

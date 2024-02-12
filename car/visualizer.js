@@ -25,7 +25,7 @@ class Visualizer {
         levelTop,
         width,
         levelHeight,
-        i == network.levels.length - 1 ? ["🠉", "🠈", "🠊", "🠋"] : []
+        i == network.levels.length - 1 ? ["⬆", "<", ">", "⬇"] : []
       );
     }
   }
@@ -94,6 +94,10 @@ class Visualizer {
   }
 
   static #getNodeX(nodes, index, left, right) {
-    return lerp(left, right, nodes.length == 1 ? 0.5 : index / (nodes.length - 1));
+    return lerp(
+      left,
+      right,
+      nodes.length == 1 ? 0.5 : index / (nodes.length - 1)
+    );
   }
 }
