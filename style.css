@@ -1,6 +1,6 @@
 body {
   margin: 0;
-  background-color: #2a5;
+  background-color: darkgrey;
   overflow: hidden;
   display: flex;
   justify-content: center;
@@ -24,8 +24,15 @@ body {
   z-index: 100;
 }
 
-#networkCanvas {
+#miniMapCanvas {
   background: black;
+  margin-bottom: 2em;
+}
+#networkCanvas {
+  margin-top: 2em;
+  background: black;
+  height: 500px;
+  aspect-ratio: 3 / 5;
 }
 #worldCanvas {
   background-color: #2a5;

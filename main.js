@@ -1,10 +1,13 @@
-const worldCanvas = document.getElementById("worldCanvas");
-worldCanvas.width = window.innerWidth - 330;
+const carCanvas = document.getElementById("worldCanvas");
+carCanvas.width = window.innerWidth - 330;
 const networkCanvas = document.getElementById("networkCanvas");
 networkCanvas.width = 300;
+const miniMapCanvas = document.getElementById("miniMapCanvas");
+miniMapCanvas.width = 300;
+miniMapCanvas.height = 300;
 
-worldCanvas.height = window.innerHeight;
-networkCanvas.height = window.innerHeight;
+carCanvas.height = window.innerHeight;
+networkCanvas.height = window.innerHeight - 330;
 
 const worldCtx = worldCanvas.getContext("2d");
 const networkCtx = networkCanvas.getContext("2d");
@@ -15,6 +18,8 @@ const worldInfo = worldString ? JSON.parse(worldString) : null;
 const world = worldInfo ? World.load(worldInfo) : new World(new Graph());
 
 const viewport = new Viewport(worldCanvas, world.zoom, world.offset);
+
+const miniMap = new MiniMap(miniMapCanvas, world.graph, 300);
 
 const N = 50;
 const cars = generateCars(N);
@@ -76,6 +81,7 @@ function animate(time) {
   viewport.reset();
   const viewPoint = scale(viewport.getOffset(), -1);
   world.draw(worldCtx, viewPoint, false);
+  miniMap.update(viewPoint);
 
   for (let i = 0; i < traffic.length; i++) {
     traffic[i].draw(worldCtx);
